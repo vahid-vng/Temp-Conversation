@@ -5,8 +5,8 @@
 }
 :root {
   font-family: "Roboto", sans-serif;
-  --color: rgb(43, 68, 180);
-  --color2: rgb(157, 239, 241);
+  --color: #2d2c72;
+  --color2: #4ceeb5;
 }
 body {
   display: flex;
@@ -35,7 +35,7 @@ input {
 .result {
   margin: 10px 0 50px;
   font-size: 26px;
-  color: rgb(255, 255, 102);
+  color: var(--color);
   letter-spacing: 1px;
   height: 1em;
   font-weight: bold;

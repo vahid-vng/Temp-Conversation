@@ -1,43 +1,41 @@
-let label = document.querySelector(".convertLabel");
-let input = document.querySelector(".convertor");
-let result = document.querySelector(".result");
-let convertButton = document.querySelector(".convertButton");
-let resetButton = document.querySelector(".resetButton");
-let changeButton = document.querySelector(".changeButton");
-
-let firstValue = document.querySelector(".fVal");
-let secondValue = document.querySelector(".sVal");
-
+const convertButton = document.querySelector(".convertButton");
+const resetButton = document.querySelector(".resetButton");
+const changeButton = document.querySelector(".changeButton");
+let cElem = document.querySelector(".C");
+let fElem = document.querySelector(".F");
+let convertInput = document.querySelector(".convertor");
+let pElem = document.querySelector(".result");
 let sum = null;
 
-changeButton.addEventListener("click", () => {
-  if (firstValue.innerHTML === "°C") {
-    result.innerHTML = "";
-    input.value = "";
-    document.title = "VNG °F to °C";
-    firstValue.innerHTML = "°F";
-    secondValue.innerHTML = "°C";
-    input.setAttribute("placeholder", "°F");
-  } else if (firstValue.innerHTML === "°F") {
-    result.innerHTML = "";
-    input.value = "";
-    document.title = "VNG °C to °F";
-    firstValue.innerHTML = "°C";
-    secondValue.innerHTML = "°F";
-    input.setAttribute("placeholder", "°C");
+let convertHandler = () => {
+  if (cElem.innerHTML === "°C") {
+    sum = convertInput.value * 1.8 + 32;
+    pElem.innerHTML = `${sum} °F`;
+  } else {
+    sum = ((convertInput.value - 32) * 5) / 9;
+    pElem.innerHTML = `${sum.toFixed(3)} °C`;
   }
-});
-resetButton.addEventListener("click", () => {
-  result.innerHTML = "";
-  input.value = "";
-});
-convertButton.addEventListener("click", () => {
-  let inputValue = input.value;
-  if (firstValue.innerHTML === "°C") {
-    sum = inputValue * 1.8 + 32;
-    result.innerHTML = `${sum} °F`;
-  } else if (firstValue.innerHTML === "°F") {
-    sum = ((inputValue - 32) * 5) / 9;
-    result.innerHTML = `${sum} °C`;
+};
+
+let resetHandler = () => {
+  pElem.innerHTML = "";
+  convertInput.value = "";
+};
+
+let changeHandler = () => {
+  if (cElem.innerHTML === "°C") {
+    cElem.innerHTML = "°F";
+    fElem.innerHTML = "°C";
+    convertInput.setAttribute("placeholder", "°F");
+    window.document.title = "VNG | Js | °F to °C";
+  } else {
+    cElem.innerHTML = "°C";
+    fElem.innerHTML = "°F";
+    convertInput.setAttribute("placeholder", "°C");
+    window.document.title = "VNG | Js | °C to °F";
   }
-});
+};
+
+convertButton.addEventListener("click", convertHandler);
+resetButton.addEventListener("click", resetHandler);
+changeButton.addEventListener("click", changeHandler);
